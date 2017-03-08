@@ -28,9 +28,9 @@ var config = {
       title:'搭建前端工作流',
       template:'./src/index.html'
     }),
-    // new uglifyPlugin({
-    //   compress:false
-    // })
+    new uglifyPlugin({
+      compress:false
+    })
   ]
 }
 
