@@ -26,7 +26,12 @@ var config = {
       },
       {
         test:/\.css$/,
-        loader:extractTextPlugin.extract("style-loader","css-loader","less-loader"),
+        //loader:extractTextPlugin.extract("style-loader","css-loader","less-loader"),
+        use:extractTextPlugin.extract({
+          fallback:"style-loader",
+          use:"css-loader",
+          publicPath:"./dist"
+        }),
         include:path.resolve(__dirname,'src')
       },
       // {
@@ -41,10 +46,11 @@ var config = {
       title:'搭建前端工作流',
       template:'./src/index.html'
     }),
-    // new extractTextPlugin({
-    //   "styles.css"
-    // }),
-    new extractTextPlugin("styles.css"),
+    new extractTextPlugin({
+      filename:"styles.css",
+      disable:false,
+      allChunks:true
+    }),
     new openBrowserPlugin({url:'http://localhost:8080'})
   ]
 }
